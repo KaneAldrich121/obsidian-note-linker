@@ -66,7 +66,7 @@ fn concat_as_regex_string(strings: &[String]) -> String {
     strings.iter()
         .enumerate()
         .fold("".to_string(), |prev, (index, current)| {
-            return if index == 0 { format!("(\\b{}\\b)", current) } else { format!("{}|(\\b{}\\b)", prev, current) };
+            return if index == 0 { format!("((?<![\\w]){}(?:s|es)?(?![\\w]))", current) } else { format!("{}|((?<![\\w]){}(?:s|es)?(?![\\w]))", prev, current) };
         })
         .add("")
 }
